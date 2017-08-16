@@ -21,7 +21,7 @@ public class DataConfig
     private Environment env;
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean sessionFactory()
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory()
     {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
 
