@@ -20,16 +20,22 @@ repositories {
 }
 
 dependencies {
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.4.RELEASE'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.5.4.RELEASE'
-    compile group: 'org.springframework', name: 'spring-orm', version: '4.3.9.RELEASE'
+    // Spring packages.
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.5.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '1.5.6.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '1.5.6.RELEASE'
+    compile group: 'org.springframework', name: 'spring-orm', version: '4.2.4.RELEASE'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '1.5.6.RELEASE'
     compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2', version: '2.2.0.RELEASE'
-    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.2.9.Final'
-    compile group: 'org.apache.tomcat', name: 'tomcat-dbcp', version :'8.0.32'
+
+    // Database packages.
+    compile group: 'org.hibernate', name: 'hibernate-core', version: '5.0.6.Final'
     compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1206-jdbc42'
 
+    // Container package.
+    compile group: 'org.apache.tomcat', name: 'tomcat-dbcp', version :'8.0.32'
 
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.2.RELEASE'
+    // Test packages.
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '1.5.6.RELEASE'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
