@@ -4,6 +4,8 @@ import com.dropmusic.jukebox.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,6 +24,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
     private UserService userService;
 
     @Autowired
+    private Environment env;
+
+    @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
     }
@@ -33,12 +38,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring().antMatchers("/health/**");
+        web.ignoring()
+                .antMatchers("/health/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        String monitorUrlPattern = env.getProperty("management.context-path") + "/**";
+
         http
+                .authorizeRequests()
+                    .antMatchers(monitorUrlPattern).authenticated()
+                    .anyRequest().permitAll()
+                    .and()
                 .csrf();
     }
 }
