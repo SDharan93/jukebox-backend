@@ -1,6 +1,16 @@
--- This file creates the necessary tables to use the OAuth2 Spring library.
+-- This file creates the necessary tables for the jukebox application.
 -- This file will be run during Spring's initialization process can run all
--- commands. Copied from https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql
+-- commands.
+
+-- Create the user tables
+CREATE TABLE if not exists users (
+    id serial PRIMARY KEY,
+    email VARCHAR(128) UNIQUE NOT NULL,
+    password VARCHAR(256) NOT NULL,
+    enabled BOOL NOT NULL
+);
+
+--Copied from https://github.com/spring-projects/spring-security-oauth/blob/master/spring-security-oauth2/src/test/resources/schema.sql
 create table IF not exists oauth_client_details (
   client_id VARCHAR(256) PRIMARY KEY,
   resource_ids VARCHAR(256),
